@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import { Table } from 'components/Table/Table';
+// import Table2 from 'components/Table2/Table2';
+import Table3 from 'components/Table3/Table3';
+import TreeMenu1 from 'components/TreeMenu1/TreeMenu1';
+import TreeMenu2 from 'components/TreeMenu2/TreeMenu2';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h3>Tree Menu 1. </h3>
+      <p>Al cerrarse se cierran las subcategorias</p>
+      <TreeMenu1 />
+      {/* <Table />
+      <Table2 /> */}
+      <hr />
+      <h3>Tree Menu 2 </h3>
+      <p>Las categorias mantienen su estado</p>
+      <TreeMenu2 />
+      <hr />
+      <h3>Tabla Sortable</h3>
+      <Table3 />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
