@@ -23,7 +23,7 @@ const Table3 = () => {
     const getData = async () => {
       try {
         setData({ status: 'pending', data: [], error: null })
-        const res = await fetch('http://localhost:3000/API/invoices.json')
+        const res = await fetch('https://components-a.vercel.app/API/invoices.json')
         const data = await res.json()
 
         setData({ status: 'fullfilled', data: data, error: null })

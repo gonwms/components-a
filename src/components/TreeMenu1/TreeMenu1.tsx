@@ -18,7 +18,7 @@ const TreeMenu1 = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/API/categories.json')
+        const res = await fetch('https://components-a.vercel.app/API/categories.json')
         const data = await res.json()
 
         setData(data.categories)
