@@ -1,7 +1,6 @@
 import { default as cl } from 'classnames';
 import React, { useEffect, useState } from 'react';
 
-import App from '../../../../../../01_Clientes/Devoo/Proyectos/invoo/client/src/App';
 import style from './style.module.scss';
 
 interface IsCategories {
