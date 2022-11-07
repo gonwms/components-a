@@ -11,12 +11,12 @@
 }
 
 .filters {
-  display: flex;
   margin-bottom: 2rem;
   // background: red;
   gap: 3rem;
   form {
     display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
   }
   label {
@@ -63,13 +63,13 @@
   }
 }
 .grilla {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 .card {
   border: 1px solid lightgrey;
   border-radius: 2px;
-  // min-width: 100px;
   padding: 10px;
+  flex: 0 0 125px;
 }
