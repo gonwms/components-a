@@ -1,12 +1,39 @@
+section {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  margin: 2rem;
+  max-width: 1600px;
+}
+
 .menu {
+  position: relative;
+  padding: 0 1.2rem;
   list-style: none;
-  span {
-    cursor: pointer;
-    user-select: none;
-  }
-  .bold {
-    list-style: none;
-    font-weight: 600;
+
+  li {
+    line-height: 1.5rem;
+    &::before {
+      position: absolute;
+      left: 0rem;
+      content: '+';
+      display: grid;
+      border: 1px solid lightblue;
+      margin-top: 0.3rem;
+      height: 0.7rem;
+      width: 0.7rem;
+      font-family: monospace;
+      line-height: 0.6rem;
+      text-align: center;
+    }
+
+    span {
+      cursor: pointer;
+      user-select: none;
+    }
+    .bold {
+      list-style: none;
+      font-weight: 600;
+    }
   }
 }
 
@@ -63,8 +90,8 @@
   }
 }
 .grilla {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1rem;
 }
 .card {

@@ -1,0 +1,16 @@
+.mytable {
+  border-collapse: collapse;
+}
+.mytable td, .mytable th {
+  border: 1px solid lightblue;
+  padding: 0.5rem 1rem;
+}
+.mytable td.sort_asc, .mytable th.sort_asc {
+  background: rgb(255, 255, 127);
+}
+.mytable td.sort_des, .mytable th.sort_des {
+  background: rgb(209, 224, 255);
+}
+.mytable th {
+  cursor: pointer;
+}/*# sourceMappingURL=style.module.css.map */

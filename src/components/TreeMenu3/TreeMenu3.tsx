@@ -11,7 +11,7 @@ interface IsCategories {
 interface IsProduct {
   quantity: number
   price: string
-  available: boolean
+  available: string
   sublevel_id: number
   name: string
   id: string
@@ -33,24 +33,31 @@ interface IsItemProps {
   visible: string[]
   active: IsActive
 }
-interface IsFormData {
-  min_quantity: string
-  max_quantity: string
+
+type IsElements = HTMLFormControlsCollection & {
+  min_quantity: HTMLInputElement
+  max_quantity: HTMLInputElement
+  min_price: HTMLInputElement
+  max_price: HTMLInputElement
+  available: HTMLSelectElement
+}
+interface IsValues {
   min_price: string
   max_price: string
-  available: 'all' | 'no-stock' | 'stock'
+  min_quantity: string
+  max_quantity: string
+  available: string
 }
+
+interface IsFilterFormElements extends HTMLFormElement {
+  readonly elements: IsElements
+}
+
 const TreeMenu3 = (): JSX.Element => {
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState<IsProduct[]>([])
+  const [currentProducts, setCurrentProducts] = useState(products)
   const [active, setActive] = useState<IsActive>({ name: 'all', id: 0 })
-  const [formData, setFormData] = useState<IsFormData>({
-    min_quantity: '0',
-    max_quantity: '',
-    min_price: '0',
-    max_price: '',
-    available: 'all',
-  })
 
   useEffect(() => {
     const ApiFetch = async () => {
@@ -64,6 +71,7 @@ const TreeMenu3 = (): JSX.Element => {
 
     ApiFetch()
   }, [])
+
   useEffect(() => {
     const ApiFetch = async () => {
       const res = await fetch(`${process.env.REACT_APP_API_BASE}products.json`)
@@ -74,6 +82,11 @@ const TreeMenu3 = (): JSX.Element => {
 
     ApiFetch()
   }, [])
+
+  useEffect(() => {
+    setCurrentProducts(products)
+  }, [products])
+
   const priceToNum = (price: string): number => {
     return +price.replace(/[$]+/g, '').replace(/[,]+/g, '')
   }
@@ -96,45 +109,40 @@ const TreeMenu3 = (): JSX.Element => {
     setProducts(sorted)
   }
 
-  // function filter(e: React.FormEvent<HTMLFormElement>) {
-  //   e.preventDefault()
-  //   const coso = e.target.elements as HTMLFormControlsCollection
-  //   // const cisi = coso.max_price.value
-
-  //   console.log(e)
-  // }
-
-  function filter(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<IsFilterFormElements>) {
     e.preventDefault()
+    const elements = [...e.currentTarget.elements]
+    const values: IsValues = elements.reduce((acc: any, el: Element) => {
+      return el instanceof HTMLInputElement || el instanceof HTMLSelectElement
+        ? { ...acc, [el.name]: el.value }
+        : acc
+    }, {})
+
     let filtered = [...products]
 
-    filtered = filtered.filter((prod) => {
-      if (priceToNum(prod.price) > +formData.min_price) return prod
-    })
-    filtered = filtered.filter((prod) => {
+    filtered = filtered.filter((product) => {
       if (
-        formData.max_price === '' ||
-        priceToNum(prod.price) < +formData.max_price
+        (values.min_price === '' ||
+          +values.min_price < priceToNum(product.price)) &&
+        (values.max_price === '' ||
+          +values.max_price > priceToNum(product.price)) &&
+        (values.min_quantity === '' ||
+          +values.min_quantity < product.quantity) &&
+        (values.max_quantity === '' ||
+          +values.max_quantity > product.quantity) &&
+        (values.available === 'all' ||
+          product.available.toString() === values.available)
       )
-        return prod
+        return product
     })
-
-    console.log(filtered)
+    setCurrentProducts(filtered)
   }
-
-  function HandleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) {
-    // console.log(formData)
-
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
+  function handleReset() {
+    setCurrentProducts(products)
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '15% 80%' }}>
+    <section>
       {categories && (
         <Menu categories={categories} setActive={setActive} active={active} />
       )}
@@ -143,59 +151,33 @@ const TreeMenu3 = (): JSX.Element => {
 
         <div className={style.filters}>
           {/* //----------------------------- FORM ------------------------ */}
-          <form onSubmit={(e) => filter(e)}>
+          <form onSubmit={handleSubmit}>
             <label htmlFor="quantity">
               <span>Quantity</span>
               <div>
-                <input
-                  id="min_quantity"
-                  name="min_quantity"
-                  type="number"
-                  placeholder="min"
-                  onChange={(e) => HandleChange(e)}
-                />
-                <input
-                  id="max_quantity"
-                  name="max_quantity"
-                  type="number"
-                  placeholder="max"
-                  onChange={(e) => HandleChange(e)}
-                />
+                <input name="min_quantity" type="number" placeholder="min" />
+                <input name="max_quantity" type="number" placeholder="max" />
               </div>
             </label>
             <label htmlFor="price">
               <span>Price</span>
               <div>
-                <input
-                  id="min_price"
-                  name="min_price"
-                  type="number"
-                  placeholder="min"
-                  onChange={(e) => HandleChange(e)}
-                />
-                <input
-                  id="max_price"
-                  name="max_price"
-                  type="number"
-                  placeholder="max"
-                  onChange={(e) => HandleChange(e)}
-                />
+                <input name="min_price" type="number" placeholder="min" />
+                <input name="max_price" type="number" placeholder="max" />
               </div>
             </label>
             <label htmlFor="available">
               <span>Available</span>
-              <select
-                id="available"
-                name="available"
-                onChange={(e) => HandleChange(e)}
-              >
+              <select id="available" name="available">
                 <option value="all">all</option>
-                <option value="stock">in stock</option>
-                <option value="no-stock">sold</option>
+                <option value="true">in stock</option>
+                <option value="false">sold</option>
               </select>
             </label>
             <button type="submit">Aplicar filtros</button>
-            <button type="reset">Reset filters</button>
+            <button type="reset" onClick={handleReset}>
+              Reset filters
+            </button>
           </form>
           {/* //----------------------------- FORM ------------------------ */}
         </div>
@@ -210,8 +192,8 @@ const TreeMenu3 = (): JSX.Element => {
           </label>
         </div>
         <div className={style.grilla}>
-          {products &&
-            products.map((product: IsProduct) => {
+          {currentProducts &&
+            currentProducts.map((product: IsProduct) => {
               return (
                 <>
                   {(active.id === product.sublevel_id || active.id === 0) && (
@@ -223,7 +205,7 @@ const TreeMenu3 = (): JSX.Element => {
                       </p>
                       <p>
                         <small>{product.price}</small> <br />
-                        <small>qty:{product.quantity}</small>
+                        <small>quantity:{product.quantity}</small>
                         <br />
                         <small>{product.available.toString()}</small>
                       </p>
@@ -234,7 +216,7 @@ const TreeMenu3 = (): JSX.Element => {
             })}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
@@ -279,12 +261,7 @@ const Menu = ({ categories, setActive, active }: IsMenuProps): JSX.Element => {
   )
 }
 
-const Item = ({
-  level,
-  handlerClick,
-  visible,
-  active,
-}: IsItemProps): JSX.Element => {
+const Item = ({ level, handlerClick, visible, active }: IsItemProps) => {
   return (
     <li>
       <span
