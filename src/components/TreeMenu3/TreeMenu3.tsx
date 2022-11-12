@@ -1,4 +1,4 @@
-import { default as cl } from 'classnames';
+import { default as classNames } from 'classnames';
 import React, { useEffect, useState } from 'react';
 
 import style from './style.module.scss';
@@ -94,7 +94,7 @@ const TreeMenu3 = (): JSX.Element => {
   function handleSort(e: React.ChangeEvent<HTMLSelectElement>) {
     const by = e.target.value
 
-    const sorted = [...products].sort((a: IsProduct, b: IsProduct) => {
+    const sorted = [...currentProducts].sort((a: IsProduct, b: IsProduct) => {
       if (by === 'quantity') {
         return a.quantity > b.quantity ? 1 : -1
       }
@@ -106,7 +106,7 @@ const TreeMenu3 = (): JSX.Element => {
       } else return 0
     })
 
-    setProducts(sorted)
+    setCurrentProducts(sorted)
   }
 
   function handleSubmit(e: React.FormEvent<IsFilterFormElements>) {
@@ -198,17 +198,13 @@ const TreeMenu3 = (): JSX.Element => {
                 <>
                   {(active.id === product.sublevel_id || active.id === 0) && (
                     <div key={product.id} className={style.card}>
-                      <p>
-                        <small>lvl:{product.sublevel_id}</small>
-                        <br />
-                        <strong>{product.name} </strong>
-                      </p>
-                      <p>
-                        <small>{product.price}</small> <br />
-                        <small>quantity:{product.quantity}</small>
-                        <br />
-                        <small>{product.available.toString()}</small>
-                      </p>
+                      <h3>{product.name} </h3>
+                      <p className={style.price}> {product.price}</p>
+                      <div className={style.footer}>
+                        <small>Lvl:{product.sublevel_id}</small>
+                        <small>Qty:{product.quantity}</small>
+                        {!product.available && <small>SOLD</small>}
+                      </div>
                     </div>
                   )}
                 </>
@@ -241,7 +237,7 @@ const Menu = ({ categories, setActive, active }: IsMenuProps): JSX.Element => {
       <li>
         <span
           onClick={() => handlerClick()}
-          className={cl({ [`${style.bold}`]: active.id === 0 })}
+          className={classNames({ [style.bold]: active.id === 0 })}
         >
           All
         </span>
@@ -266,7 +262,7 @@ const Item = ({ level, handlerClick, visible, active }: IsItemProps) => {
     <li>
       <span
         onClick={() => handlerClick(level.id, level.name)}
-        className={cl({ [`${style.bold}`]: active.id === level.id })}
+        className={classNames({ [style.bold]: active.id === level.id })}
       >
         {level.name}
       </span>
