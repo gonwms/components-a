@@ -1,0 +1,27 @@
+.select {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.select input {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.select .options {
+  z-index: 1;
+  position: absolute;
+  border: 1px solid grey;
+  background: white;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 1rem;
+}
+.select .options .option {
+  margin: 0;
+  padding: 0.5rem;
+}
+.select .options .option:hover {
+  background: rgb(0, 110, 255);
+  color: white;
+}/*# sourceMappingURL=style.module.css.map */

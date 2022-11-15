@@ -1,8 +1,13 @@
-section {
+section.treeMenu {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+
   margin: 2rem;
   max-width: 1600px;
+}
+@media screen and (min-width: 728px) {
+  section {
+    grid-template-columns: 1fr 5fr;
+  }
 }
 
 .menu {

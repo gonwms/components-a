@@ -142,7 +142,7 @@ const TreeMenu3 = (): JSX.Element => {
   }
 
   return (
-    <section>
+    <section className={style.treeMenu}>
       {categories && (
         <Menu categories={categories} setActive={setActive} active={active} />
       )}
@@ -155,15 +155,35 @@ const TreeMenu3 = (): JSX.Element => {
             <label htmlFor="quantity">
               <span>Quantity</span>
               <div>
-                <input name="min_quantity" type="number" placeholder="min" />
-                <input name="max_quantity" type="number" placeholder="max" />
+                <input
+                  name="min_quantity"
+                  type="number"
+                  step="0.01"
+                  placeholder="min"
+                />
+                <input
+                  name="max_quantity"
+                  type="number"
+                  step="0.01"
+                  placeholder="max"
+                />
               </div>
             </label>
             <label htmlFor="price">
               <span>Price</span>
               <div>
-                <input name="min_price" type="number" placeholder="min" />
-                <input name="max_price" type="number" placeholder="max" />
+                <input
+                  name="min_price"
+                  type="number"
+                  step="0.01"
+                  placeholder="min"
+                />
+                <input
+                  name="max_price"
+                  type="number"
+                  step="0.01"
+                  placeholder="max"
+                />
               </div>
             </label>
             <label htmlFor="available">

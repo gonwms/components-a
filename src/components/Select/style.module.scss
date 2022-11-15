@@ -1,0 +1,26 @@
+.select {
+  width: fit-content;
+  input {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  .options {
+    z-index: 1;
+    position: absolute;
+    border: 1px solid grey;
+    // display: block;
+    background: white;
+    width: fit-content;
+    font-size: 1rem;
+    // padding: 0.5rem;
+    .option {
+      margin: 0;
+      padding: 0.5rem;
+
+      &:hover {
+        background: rgb(0, 110, 255);
+        color: white;
+      }
+    }
+  }
+}

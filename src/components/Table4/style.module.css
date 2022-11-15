@@ -1,0 +1,36 @@
+section {
+  padding: 2rem;
+}
+section table {
+  border-collapse: collapse;
+}
+section table td,
+section table th {
+  border: 1px solid lightblue;
+  padding: 0.5rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+section table th {
+  cursor: pointer;
+}
+section .bulk {
+  display: flex;
+  padding: 1rem 0;
+  gap: 1rem;
+}
+section .bulk button {
+  border: none;
+  border-radius: 3px;
+  background: lightgray;
+  padding: 0.8rem 1.5rem;
+  color: #222222;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+section .bulk button:hover {
+  background: #0075ff;
+  color: white;
+}/*# sourceMappingURL=style.module.css.map */
