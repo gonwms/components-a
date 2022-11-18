@@ -9,35 +9,36 @@ import Select from './components/Select/Select';
 import Table4 from './components/Table4/Table4';
 
 function App() {
-  return (
-    <div>
-      {/* <h3>Tree Menu 1. </h3>s
-      <p>Al cerrarse se cierran las subcategorias</p>
-      <TreeMenu1 />
-      <hr /> */}
+   return (
+      <div>
+         {/* <h3>Tree Menu 1. </h3>s
+       <p>Al cerrarse se cierran las subcategorias</p>
+       <TreeMenu1 />
+       <hr /> */}
 
-      {/* <Table />
-      <Table2 /> */}
-      {/* <h3>Tree Menu 2 </h3>
-      <p>Las categorias mantienen su estado</p>
-      <TreeMenu2 />
-      <hr /> */}
+         {/* <Table />
+       <Table2 /> */}
+         {/* <h3>Tree Menu 2 </h3>
+       <p>Las categorias mantienen su estado</p>
+       <TreeMenu2 />
+       <hr /> */}
 
-      {/* <h3>Tabla Sortable</h3>
-      <Table3 />
-      <hr /> */}
-      <Select
-        options={[
-          'Lorem ipsum',
-          'dolor sit amet',
-          'consectetur',
-          'adipisicing',
-        ]}
-      />
-      <Table4 />
-      <TreeMenu3 />
-    </div>
-  )
+         {/* <h3>Tabla Sortable</h3>
+       <Table3 />
+       <hr /> */}
+         <Select
+            title="Salsa"
+            options={[
+               'Lorem ipsum',
+               'dolor sit amet',
+               'consectetur',
+               'adipisicing',
+            ]}
+         />
+         {/* <Table4 />
+            <TreeMenu3 /> */}
+      </div>
+   )
 }
 
 export default App

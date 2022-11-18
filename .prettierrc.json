@@ -1,5 +1,5 @@
 {
-    "tabWidth": 2,
+    "tabWidth": 3,
     "useTabs": false,
     "semi": false,
     "singleQuote": true,
@@ -14,16 +14,16 @@
             ],
             "options": {
                 "printWidth": 300,
-                "tabWidth": 4
+                "tabWidth": 3
             }
         },
         {
             "files": [
-                "**/*.js"
+                "cypress/e2e/**.{cy,spec}.{js,ts,jsx,tsx}"
             ],
             "options": {
-                "printWidth": 100,
-                "tabWidth": 4
+                "printWidth": 80,
+                "tabWidth": 3
             }
         }
     ]

@@ -9,7 +9,8 @@
     "eject": "react-scripts eject",
     "prettier": "prettier --write .",
     "lint": "eslint ./src/",
-    "json-server": "npx json-server --watch FAKE_DATA.json --port 5000"
+    "cy": "cypress open",
+    "cy:test": "cypress run --browser chrome --headed"
   },
   "dependencies": {
     "classnames": "^2.3.2",
@@ -29,9 +30,11 @@
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
+    "cypress": "^11.1.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.26.0",
     "sass": "^1.55.0"
   },

@@ -1,27 +1,38 @@
-.select {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+.dd {
+  position: relative;
+  display: block;
+  min-width: 200px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
-.select input {
+.dd .dd_header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid lightblue;
+  border-radius: 3px;
+  width: 100%;
   padding: 0.5rem;
-  font-size: 1rem;
 }
-.select .options {
+.dd .options {
   z-index: 1;
   position: absolute;
-  border: 1px solid grey;
+  top: 2.5rem;
+  border: 1px solid lightblue;
   background: white;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
   font-size: 1rem;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2470588235);
 }
-.select .options .option {
+.dd .options .option {
   margin: 0;
   padding: 0.5rem;
 }
-.select .options .option:hover {
+.dd .options .option:hover {
   background: rgb(0, 110, 255);
   color: white;
+}
+.dd .options input {
+  padding: 0.5rem;
+  font-size: 1rem;
 }/*# sourceMappingURL=style.module.css.map */

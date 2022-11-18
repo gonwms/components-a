@@ -1,63 +1,74 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true
-  },
-  "extends": [
-    "eslint:recommended",
-    // "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:import/recommended",
-    "plugin:import/typescript"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
-  "plugins": ["react", "@typescript-eslint", "import"],
-  "root": true,
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
-  },
-  "rules": {
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/sort-type-union-intersection-members": [
-      "warn",
-      {
-        "groups": [
-          "type",
-          "builtin",
-          "object",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index"
-        ],
-        "pathGroups": [
-          {
-            "pattern": "~/**",
-            "group": "external",
-            "position": "after"
-          }
-        ],
-        "newlines-between": "always"
+   "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+      // "cypress/globals": true
+   },
+   "extends": [
+      "eslint:recommended",
+      // "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier",
+      "plugin:import/recommended",
+      "plugin:import/typescript"
+      // "plugin:cypress/recommended"
+   ],
+   "parser": "@typescript-eslint/parser",
+   "parserOptions": {
+      "ecmaFeatures": {
+         "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+   },
+   "plugins": ["react", "@typescript-eslint", "import", "cypress"],
+   "root": true,
+   "settings": {
+      "import/resolver": {
+         "typescript": {}
       }
-    ],
-    "padding-line-between-statements": [
-      "warn",
-      { "blankLine": "always", "prev": "*", "next": "return" },
-      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
-      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] }
-    ]
-  }
+   },
+
+   "rules": {
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/sort-type-union-intersection-members": [
+         "warn",
+         {
+            "groups": [
+               "type",
+               "builtin",
+               "object",
+               "external",
+               "internal",
+               "parent",
+               "sibling",
+               "index"
+            ],
+            "pathGroups": [
+               {
+                  "pattern": "~/**",
+                  "group": "external",
+                  "position": "after"
+               }
+            ],
+            "newlines-between": "always"
+         }
+      ],
+      "padding-line-between-statements": [
+         "warn",
+         { "blankLine": "always", "prev": "*", "next": "return" },
+         {
+            "blankLine": "always",
+            "prev": ["const", "let", "var"],
+            "next": "*"
+         },
+         {
+            "blankLine": "any",
+            "prev": ["const", "let", "var"],
+            "next": ["const", "let", "var"]
+         }
+      ]
+   }
 }
