@@ -28,10 +28,21 @@ const Select = ({ options, title }: IsProps) => {
       }
    }, [])
 
-   function handleClick(option: string) {
+   function handleClick(
+      option: string,
+      e:
+         | React.KeyboardEvent<HTMLAnchorElement>
+         | React.MouseEvent<HTMLAnchorElement>,
+   ) {
+      e.preventDefault()
       setSelected(option)
       setVisible(false)
       setSelectOptions(options)
+      if (selector.current && selector.current.firstChild) {
+         const target = selector.current.firstChild as HTMLLIElement
+
+         target.focus()
+      }
    }
 
    function filterOptions(e: React.ChangeEvent<HTMLInputElement>) {
@@ -67,19 +78,16 @@ const Select = ({ options, title }: IsProps) => {
             </div>
             {!!visible && (
                <div className={style.options} data-testid="options">
-                  {selectOptions.map((option, i) => {
+                  {selectOptions.map((option) => {
                      return (
                         <a
                            key={option}
                            className={style.option}
                            href=""
                            role="button"
-                           onClick={(e) => {
-                              e.preventDefault()
-                              handleClick(option)
-                           }}
+                           onClick={(e) => handleClick(option, e)}
                            onKeyDown={(e) =>
-                              e.key === 'Enter' && handleClick(option)
+                              e.key === 'Enter' && handleClick(option, e)
                            }
                         >
                            {option}
