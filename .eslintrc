@@ -22,7 +22,7 @@
       "ecmaVersion": "latest",
       "sourceType": "module"
    },
-   "plugins": ["react", "@typescript-eslint", "import", "cypress"],
+   "plugins": ["react", "@typescript-eslint", "import"],
    "root": true,
    "settings": {
       "import/resolver": {

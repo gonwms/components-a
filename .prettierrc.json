@@ -13,13 +13,13 @@
                 "**/*.test.ts"
             ],
             "options": {
-                "printWidth": 300,
+                "printWidth": 100,
                 "tabWidth": 3
             }
         },
         {
             "files": [
-                "cypress/e2e/**.{cy,spec}.{js,ts,jsx,tsx}"
+                "**/**.{cy,spec}.{js,ts,jsx,tsx}"
             ],
             "options": {
                 "printWidth": 80,
