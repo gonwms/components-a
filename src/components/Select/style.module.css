@@ -4,7 +4,6 @@
   min-width: 200px;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .dd .dd_header {
@@ -15,6 +14,9 @@
   width: 100%;
   padding: 0.5rem;
 }
+.dd .dd_header span.state {
+  font-size: 0.8em;
+}
 .dd .options {
   z-index: 1;
   position: absolute;
@@ -24,11 +26,18 @@
   font-size: 1rem;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2470588235);
 }
-.dd .options .option {
+.dd .options a {
+  display: block;
   margin: 0;
-  padding: 0.5rem;
+  padding: 1rem;
+  text-decoration: none;
+  cursor: pointer;
 }
-.dd .options .option:hover {
+.dd .options a:hover {
+  background: rgb(0, 110, 255);
+  color: white;
+}
+.dd .options a:focus {
   background: rgb(0, 110, 255);
   color: white;
 }

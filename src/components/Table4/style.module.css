@@ -10,7 +10,6 @@ section table th {
   padding: 0.5rem;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 section table th {
